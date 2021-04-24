@@ -31,6 +31,7 @@ type CpuState struct {
 
 type Cpu struct {
 	Opcode uint8    `json:"opcode"`
+	Id     string   `json:"id"`
 	State  CpuState `json:"state"`
 }
 
