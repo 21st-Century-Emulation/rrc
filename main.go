@@ -27,6 +27,7 @@ type CpuState struct {
 	ProgramCounter uint16   `json:"programCounter"`
 	StackPointer   uint16   `json:"stackPointer"`
 	Cycles         uint64   `json:"cycles"`
+	InterruptsEnabled bool   `json:"interruptsEnabled"`
 }
 
 type Cpu struct {
