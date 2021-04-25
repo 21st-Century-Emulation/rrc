@@ -11,11 +11,14 @@ EXPECTED='{"id":"abcd", "opcode":0,"state":{"a":121,"b":0,"c":0,"d":0,"e":0,"h":
 
 docker kill rrc
 
-if [ "$RESULT" = "$EXPECTED" ]; then
-    echo -e "\e[32mrrc Test Pass \e[0m"
+DIFF=`diff <(jq -S . <<< "$RESULT") <(jq -S . <<< "$EXPECTED")`
+
+if [ $? -eq 0 ]; then
+    echo -e "\e[32mRRC Test Pass \e[0m"
     exit 0
 else
-    echo -e "\e[31mTLC Test Fail  \e[0m"
+    echo -e "\e[31mRRC Test Fail  \e[0m"
     echo "$RESULT"
-    exit -1
+    echo "$EXPECTED"
+    exit 1
 fi
