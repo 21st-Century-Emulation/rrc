@@ -43,7 +43,7 @@ func rrc(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(body, &cpu)
 
 	var lowBit = cpu.State.A & 0b0000_0001
-	cpu.State.A = (cpu.State.A >> 1) | lowBit
+	cpu.State.A = (cpu.State.A >> 1) | (lowBit << 7)
 	cpu.State.Flags.Carry = lowBit != 0
 	cpu.State.Cycles += 4
 
